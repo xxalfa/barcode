@@ -167,60 +167,9 @@
 <br>
 <table>
 
-<?php $code = '111222333'; ?>
-<tr><th>STD25</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=1&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '111222333'; ?>
-<tr><th>INT25</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=2&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '65833254'; ?>
-<tr><th>EAN8</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=3&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '5901234123457'; ?>
-<tr><th>EAN13</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=4&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '111222333444'; ?>
-<tr><th>UPC</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=5&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '111222333'; ?>
-<tr><th>CODE11</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=6&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '111222333'; ?>
-<tr><th>CODE39</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=7&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = 'ABC-1234-/+'; ?>
-<tr><th>CODE93</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=8&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = 'AABBCCDDEE 128-B'; ?>
-<tr><th>CODE128</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=9&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '123456789'; ?>
-<tr><th>CODABAR</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=10&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = '111222333'; ?>
-<tr><th>MSI</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=11&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = md5( time() ); ?>
+<?php $code = 'AAAAAAAA10BBBBBBBB20CCCCCCCC30DDDDDDDD40EEEEEEEE50'; ?>
+<?php $code = 'AAAAAAAA10BBBBBBBB20CCCCCCCC30DDDDDDDD40EEEEEEEE50'; ?>
 <tr><th>DATAMATRIX</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=12&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = md5( time() ); ?>
-<tr><th>DATAMATRIX RECTANGULAR</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=12&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
-
-<?php $code = md5( time() ); ?>
-<tr><th>QRCODE</th><th><?php echo $code; ?></th></tr>
-<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=13&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>"></td></tr>
+<tr><td colspan="2"><img src="?INPUT_BARCODE_TYPE=12&INPUT_BARCODE_CONTENT=<?php echo urlencode( $code ); ?>&INPUT_IMAGE_RESIZE_SCALE=4"></td></tr>
 
 </table>
