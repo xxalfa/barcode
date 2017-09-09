@@ -48,9 +48,9 @@
 
     // barcode, of course ; )
     
-    $code = '123456789';
+    $code = str_repeat( '1', 60 );
 
-    $type = 'codabar';
+    $type = 'datamatrix';
 
     // -------------------------------------------------- //
     //            ALLOCATE GD RESSOURCE
@@ -72,7 +72,7 @@
     //                      BARCODE
     // -------------------------------------------------- //
 
-    $data = Barcode::gd( $im, $black, $x, $y, $angle, $type, array( 'code'=> $code ), $width, $height );
+    $data = Barcode::gd( $im, $black, $x, $y, $angle, $type, array( 'code'=> $code, 'rect' => true ), $width, $height );
 
     // -------------------------------------------------- //
     //                        HRI
@@ -172,7 +172,9 @@
     //                    GENERATE
     // -------------------------------------------------- //
 
-    header( 'Content-type: image/gif' );
+    header( 'Content-Type:image/gif' );
+
+    // header( 'Content-Type:text/plain' );
 
     imagegif( $im );
 

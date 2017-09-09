@@ -7,12 +7,12 @@
  * @porting PHP
  *
  * @date    2013-01-06
- * @author  DEMONTE Jean-Baptiste <jbdemonte@gmail.com>
- * @author  HOUREZ Jonathan
+ * @author DEMONTE Jean-Baptiste <jbdemonte@gmail.com>
+ * @author HOUREZ Jonathan
  *
  * @date    2013-12-24
  *          Leszek Boroch <borek@borek.net.pl>
- *          Modification in class Linear_Barcode_Code128 to enable encoding extended characters
+ *          Modification in class Barcode_Linear_Code128 to enable encoding extended characters
  *          (ASCII above 127). To use barcodes, keypad emulation must be enabled in scanner configuration
  *          (tested with Motorola/Symbol LS2208).
  *
@@ -25,7 +25,7 @@
 /**
  * Barcode Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
 class Barcode
@@ -33,210 +33,210 @@ class Barcode
     /**
      * Contains the file name.
      *
-     * @since   2.0.20
-     * @access  protected
+     * @since 2.0.20
+     * @access protected
      *
-     * @var     string
+     * @var <string>
      */
     protected $file_name = '';
 
     /**
      * Contains the image resource.
      *
-     * @since   2.0.7
-     * @access  protected
+     * @since 2.0.7
+     * @access protected
      *
-     * @var     null|resource
+     * @var <null|resource>
      */
     protected $image_resource = null;
 
     /**
      * With this value, the output quality is determined. The value can vary from 0 to 100.
      *
-     * @since   2.0.8
-     * @access  protected
+     * @since 2.0.8
+     * @access protected
      *
-     * @var     integer
+     * @var <integer>
      */
     protected $image_quality = 100;
 
     /**
      * Specifies in which direction the image is to be displayed.
      *
-     * @since   2.0.11
-     * @access  protected
+     * @since 2.0.11
+     * @access protected
      *
-     * @var     string
+     * @var <string>
      */
     protected $image_orientaton = 'top';
 
     /**
      * Does the image width.
      *
-     * @since   2.0.12
-     * @access  protected
+     * @since 2.0.12
+     * @access protected
      *
-     * @var     null|integer
+     * @var <null|integer>
      */
     protected $image_width = null;
 
     /**
      * Does the image height.
      *
-     * @since   2.0.12
-     * @access  protected
+     * @since 2.0.12
+     * @access protected
      *
-     * @var     null|integer
+     * @var <null|integer>
      */
     protected $image_height = null;
 
     /**
      * Contains the allowed scales.
      *
-     * @since   2.0.12
-     * @access  protected
+     * @since 2.0.12
+     * @access protected
      *
-     * @var     array
+     * @var <array>
      */
     protected $array_of_allowed_image_scales = array( 'inch', 'in', 'cm', 'mm', 'pixels', 'px', 'points', 'pt' );
 
     /**
      * Contains the image format, after which the barcode is to be output.
      *
-     * @since   2.0.7
-     * @access  protected
+     * @since 2.0.7
+     * @access protected
      *
-     * @var     string
+     * @var <string>
      */
     protected $image_content_type = 'gif';
 
     /**
      * Contains the allowed image extensions.
      *
-     * @since   2.0.7
-     * @access  protected
+     * @since 2.0.7
+     * @access protected
      *
-     * @var     array
+     * @var <array>
      */
     protected $array_of_allowed_image_extensions = array( 'gif', 'jpg', 'jpeg', 'png' );
 
     /**
      * Does the color, which should be used in the preparation of a barcode module.
      *
-     * @since   2.0.14
-     * @access  protected
+     * @since 2.0.14
+     * @access protected
      *
-     * @var     string
+     * @var <string>
      */
     protected $image_barcode_module_color = '000000';
 
     /**
      * Does the color, which should be used when creating the image background.
      *
-     * @since   2.0.14
-     * @access  protected
+     * @since 2.0.14
+     * @access protected
      *
-     * @var     string
+     * @var <string>
      */
     protected $image_background_color = 'FFFFFF';
 
     /**
      * Contains the desired image width.
      *
-     * @since   2.0.12
-     * @access  protected
+     * @since 2.0.12
+     * @access protected
      *
-     * @var     null|integer
+     * @var <null|integer>
      */
     protected $image_resize_width = null;
 
     /**
      * Contains the desired image height.
      *
-     * @since   2.0.12
-     * @access  protected
+     * @since 2.0.12
+     * @access protected
      *
-     * @var     null|integer
+     * @var <null|integer>
      */
     protected $image_resize_height = null;
 
     /**
      * Contains the desired image scale.
      *
-     * @since   2.0.12
-     * @access  protected
+     * @since 2.0.12
+     * @access protected
      *
-     * @var     null|string
+     * @var <null|string>
      */
     protected $image_resize_scale = null;
 
     /**
      * Contains the desired dots per inch.
      *
-     * @since   2.0.12
-     * @access  protected
+     * @since 2.0.12
+     * @access protected
      *
-     * @var     null|integer
+     * @var <null|integer>
      */
     protected $image_resize_dpi = null;
 
     /**
      * Contains the barcode type.
      *
-     * @since   2.0.7
-     * @access  protected
+     * @since 2.0.7
+     * @access protected
      *
-     * @var     string
+     * @var <string>
      */
     protected $barcode_type = 'qrcode';
 
     /**
      * Contains the barcode content.
      *
-     * @since   2.0.7
-     * @access  protected
+     * @since 2.0.7
+     * @access protected
      *
-     * @var     string
+     * @var <string>
      */
     protected $barcode_content = 'BarCode Coder Library';
 
     /**
      * Contains the barcode margin.
      *
-     * @since   2.0.13
-     * @access  protected
+     * @since 2.0.13
+     * @access protected
      *
-     * @var     array
+     * @var <array>
      */
     protected $barcode_margin = array( 'top' => 0, 'right' => 0, 'bottom' => 0, 'left' => 0 );
 
     /**
      * The check code for error detection and correction is as CRC, using polynomial division. (https://wikipedia.org/wiki/Cyclic_redundancy_check)
      *
-     * @since   2.0.7
-     * @access  protected
+     * @since 2.0.7
+     * @access protected
      *
-     * @var     boolean
+     * @var <boolean>
      */
     protected $barcode_cyclic_redundancy_check = true;
 
     /**
      * Determines whether the data matrix to display rectangle. (DIN 16587 Rectangular Extension of Data Matrix)
      *
-     * @since   2.0.7
-     * @access  protected
+     * @since 2.0.7
+     * @access protected
      *
-     * @var     boolean
+     * @var <boolean>
      */
     protected $barcode_datamatrix_rectangular = false;
 
     /**
      * Create an instance and processed the incoming arguments.
      *
-     * @since   2.0.7
-     * @access  public
+     * @since 2.0.7
+     * @access public
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function __construct()
     {
@@ -333,8 +333,8 @@ class Barcode
     /**
      * Destroy the image resource.
      *
-     * @since   2.0.7
-     * @access  public
+     * @since 2.0.7
+     * @access public
      */
     public function __destruct()
     {
@@ -347,12 +347,12 @@ class Barcode
     /**
      * Can be called to define the barcode type.
      *
-     * @since   2.0.7
-     * @access  public
+     * @since 2.0.7
+     * @access public
      *
-     * @param   null|string $value Contains the value of barcode type.
+     * @param <null|string> $value Contains the value of barcode type.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function type( $value = null )
     {
@@ -366,12 +366,12 @@ class Barcode
     /**
      * Can be called to define the barcode content.
      *
-     * @since   2.0.7
-     * @access  public
+     * @since 2.0.7
+     * @access public
      *
-     * @param   null|string $value Contains the value of barcode content.
+     * @param <null|string> $value Contains the value of barcode content.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function content( $value = null )
     {
@@ -385,12 +385,12 @@ class Barcode
     /**
      * Can be called to set a new file name.
      *
-     * @since   2.0.20
-     * @access  public
+     * @since 2.0.20
+     * @access public
      *
-     * @param   null|string $value Contains the value of file name.
+     * @param <null|string> $value Contains the value of file name.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function name( $value = null )
     {
@@ -419,12 +419,12 @@ class Barcode
     /**
      * Can be called to set a new image extension.
      *
-     * @since   2.0.20
-     * @access  public
+     * @since 2.0.20
+     * @access public
      *
-     * @param   null|string $value Contains the value of image extension.
+     * @param <null|string> $value Contains the value of image extension.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function extension( $value = null )
     {
@@ -438,12 +438,12 @@ class Barcode
     /**
      * Can be called to change the image quality.
      *
-     * @since   2.0.8
-     * @access  public
+     * @since 2.0.8
+     * @access public
      *
-     * @param   null|integer $value Contains the value of image quality.
+     * @param <null|integer> $value Contains the value of image quality.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function quality( $value = null )
     {
@@ -455,12 +455,12 @@ class Barcode
     /**
      * Can be called to paint the barcode a white frame.
      *
-     * @since   2.0.7
-     * @access  public
+     * @since 2.0.7
+     * @access public
      *
-     * @param   null|integer Contains the value of margin.
+     * @param <null|integer> Contains the value of margin.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function margin()
     {
@@ -486,12 +486,12 @@ class Barcode
     /**
      * Can be called to change the image width.
      *
-     * @since   2.0.12
-     * @access  public
+     * @since 2.0.12
+     * @access public
      *
-     * @param   null|integer $value Contains the value of image width.
+     * @param <null|integer> $value Contains the value of image width.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function width( $value = null )
     {
@@ -505,12 +505,12 @@ class Barcode
     /**
      * Can be called to change the image height.
      *
-     * @since   2.0.12
-     * @access  public
+     * @since 2.0.12
+     * @access public
      *
-     * @param   null|integer $value Contains the value of image height.
+     * @param <null|integer> $value Contains the value of image height.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function height( $value = null )
     {
@@ -524,12 +524,12 @@ class Barcode
     /**
      * Can be called to change the image scale.
      *
-     * @since   2.0.12
-     * @access  public
+     * @since 2.0.12
+     * @access public
      *
-     * @param   null|string $value Contains the value of image scale.
+     * @param <null|string> $value Contains the value of image scale.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function scale( $value = null )
     {
@@ -543,12 +543,12 @@ class Barcode
     /**
      * Can be called to change the dots per inch.
      *
-     * @since   2.0.12
-     * @access  public
+     * @since 2.0.12
+     * @access public
      *
-     * @param   null|integer $value Contains the value of dots per inch.
+     * @param <null|integer> $value Contains the value of dots per inch.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function dpi( $value = null )
     {
@@ -562,12 +562,12 @@ class Barcode
     /**
      * Can be called to determine whether a review should be carried out.
      *
-     * @since   2.0.12
-     * @access  public
+     * @since 2.0.12
+     * @access public
      *
-     * @param   null|boolean|integer|string $value Contains a value that is true.
+     * @param <null|boolean|integer|string> $value Contains a value that is true.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function crc( $value = null )
     {
@@ -579,12 +579,12 @@ class Barcode
     /**
      * Can be called to determine the rectangular representation of a data matrix.
      *
-     * @since   2.0.12
-     * @access  public
+     * @since 2.0.12
+     * @access public
      *
-     * @param   null|boolean|integer|string $value Contains a value that is true.
+     * @param <null|boolean|integer|string> $value Contains a value that is true.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function rect( $value = null )
     {
@@ -596,12 +596,12 @@ class Barcode
     /**
      * Can be called to change the barcode module and the image background color.
      *
-     * @since   2.0.14
-     * @access  public
+     * @since 2.0.14
+     * @access public
      *
-     * @param   null|string Contains the value of color.
+     * @param <null|string> Contains the value of color.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function color()
     {
@@ -624,12 +624,12 @@ class Barcode
     /**
      * Can be called to beautify the appearance of the barcode.
      *
-     * @since   2.0.14
-     * @access  public
+     * @since 2.0.14
+     * @access public
      *
-     * @param   null
+     * @param <null>
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function template()
     {
@@ -764,11 +764,12 @@ class Barcode
     /**
      * Created on the basis of the barcode data an image.
      *
-     * @since   2.0.7
-     * @access  public
+     * @since 2.0.7
+     * @access public
      *
-     * @return  Barcode
-     * @throws  Exception
+     * @throws \Exception
+     *
+     * @return \Barcode
      */
     public function create()
     {
@@ -779,7 +780,7 @@ class Barcode
             case 'STD25':
             case 'INT25':
             {
-                $array_of_modules = Linear_Barcode_Interleaved2of5::get_digit( $this->barcode_content, $this->barcode_cyclic_redundancy_check, $this->barcode_type );
+                $array_of_modules = Barcode_Linear_Interleaved2of5::get_digit( $this->barcode_content, $this->barcode_cyclic_redundancy_check, $this->barcode_type );
             }
             break;
             case 'EAN':
@@ -792,53 +793,53 @@ class Barcode
             case 'ISBN':
             case 'ISMN':
             {
-                $array_of_modules = Linear_Barcode_EuropeanArticleNumber::get_digit( $this->barcode_content, $this->barcode_type );
+                $array_of_modules = Barcode_Linear_EuropeanArticleNumber::get_digit( $this->barcode_content, $this->barcode_type );
             }
             break;
             case 'UPC':
             case 'GTIN12':
             {
-                $array_of_modules = Linear_Barcode_UniversalProductCode::get_digit( $this->barcode_content );
+                $array_of_modules = Barcode_Linear_UniversalProductCode::get_digit( $this->barcode_content );
             }
             break;
             case 'CODE11':
             {
-                $array_of_modules = Linear_Barcode_Code11::get_digit( $this->barcode_content );
+                $array_of_modules = Barcode_Linear_Code11::get_digit( $this->barcode_content );
             }
             break;
             case 'CODE39':
             {
-                $array_of_modules = Linear_Barcode_Code39::get_digit( $this->barcode_content );
+                $array_of_modules = Barcode_Linear_Code39::get_digit( $this->barcode_content );
             }
             break;
             case 'CODE93':
             {
-                $array_of_modules = Linear_Barcode_Code93::get_digit( $this->barcode_content, $this->barcode_cyclic_redundancy_check );
+                $array_of_modules = Barcode_Linear_Code93::get_digit( $this->barcode_content, $this->barcode_cyclic_redundancy_check );
             }
             break;
             case 'CODE128':
             {
-                $array_of_modules = Linear_Barcode_Code128::get_digit( $this->barcode_content );
+                $array_of_modules = Barcode_Linear_Code128::get_digit( $this->barcode_content );
             }
             break;
             case 'CODABAR':
             {
-                $array_of_modules = Linear_Barcode_Codabar::get_digit( $this->barcode_content );
+                $array_of_modules = Barcode_Linear_Codabar::get_digit( $this->barcode_content );
             }
             break;
             case 'MSI':
             {
-                $array_of_modules = Linear_Barcode_ModifiedPlessey::get_digit( $this->barcode_content, $this->barcode_cyclic_redundancy_check );
+                $array_of_modules = Barcode_Linear_ModifiedPlessey::get_digit( $this->barcode_content, $this->barcode_cyclic_redundancy_check );
             }
             break;
             case 'DATAMATRIX':
             {
-                $array_of_modules = Matrix_Barcode_DataMatrix::get_digit( $this->barcode_content, $this->barcode_datamatrix_rectangular );
+                $array_of_modules = Barcode_Matrix_DataMatrix::get_digit( $this->barcode_content, $this->barcode_datamatrix_rectangular );
             }
             break;
             case 'QRCODE':
             {
-                $a = new Matrix_Barcode_QuickResponseCode( $this->barcode_content, 3 );
+                $a = new Barcode_Matrix_QuickResponseCode( $this->barcode_content, 3 );
                 $array_of_modules = $a->get_digit();
             }
             break;
@@ -948,12 +949,12 @@ class Barcode
      *
      * Checks the modified resource and processes them.
      *
-     * @since   2.0.8
-     * @access  public
+     * @since 2.0.8
+     * @access public
      *
-     * @param   null|resource
+     * @param <null|resource>
      *
-     * @return  Barcode|resource
+     * @return <Barcode|resource>
      */
     public function resource( $image_resource = null )
     {
@@ -974,12 +975,12 @@ class Barcode
     /**
      * Can be called to change the orientation.
      *
-     * @since   2.0.11
-     * @access  public
+     * @since 2.0.11
+     * @access public
      *
-     * @param   string $value Contains the value of orientation.
+     * @param <string> $value Contains the value of orientation.
      *
-     * @return  Barcode
+     * @return \Barcode
      */
     public function orientaton( $value = null )
     {
@@ -1026,16 +1027,17 @@ class Barcode
     /**
      * Can be called to enlarge a barcode to a certain size.
      *
-     * @since   2.0.12
-     * @access  public
+     * @since 2.0.12
+     * @access public
      *
-     * @param   integer #1 Contains the value of image width.
-     * @param   integer #2 Contains the value of image height.
-     * @param   string  #3 Contains the value of scale.
-     * @param   integer #4 Contains the value of dots per inch.
+     * @param <integer> #1 Contains the value of image width.
+     * @param <integer> #2 Contains the value of image height.
+     * @param <string> #3 Contains the value of scale.
+     * @param <integer> #4 Contains the value of dots per inch.
      *
-     * @return  Barcode
-     * @throws  Exception
+     * @throws \Exception
+     *
+     * @return \Barcode
      */
     public function resize()
     {
@@ -1150,13 +1152,14 @@ class Barcode
      *
      * Say to the header, that the following data, will be an image and paint the image.
      *
-     * @since   2.0.7
-     * @access  public
+     * @since 2.0.7
+     * @access public
      *
-     * @param   null|boolean|string $value If the value is true, then deliver the image data to a variable. If the value is false, then start a file download. If the value is a string, then save the image to a file. If the filename is empty, then use the automatically generated.
+     * @param <null|boolean|string> $value If the value is true, then deliver the image data to a variable. If the value is false, then start a file download. If the value is a string, then save the image to a file. If the filename is empty, then use the automatically generated.
      *
-     * @return  string Does the image data, if the variable "$value" is true.
-     * @throws  Exception
+     * @throws \Exception
+     *
+     * @return <string> Does the image data, if the variable "$value" is true.
      */
     public function image( $value = null )
     {
@@ -1211,14 +1214,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function gd( $image_resource, $color, $x, $y, $angle, $type, $datas, $width = null, $height = null )
     {
@@ -1228,14 +1230,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function fpdf( $image_resource, $color, $x, $y, $angle, $type, $datas, $width = null, $height = null )
     {
@@ -1245,14 +1246,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function raw( $type, $datas )
     {
@@ -1290,44 +1290,44 @@ class Barcode
         {
             case 'std25':
             case 'int25':
-            $digit = Linear_Barcode_Interleaved2of5::get_digit( $code, $crc, $type );
-            $hri = Linear_Barcode_Interleaved2of5::compute( $code, $crc, $type );
+            $digit = Barcode_Linear_Interleaved2of5::get_digit( $code, $crc, $type );
+            $hri = Barcode_Linear_Interleaved2of5::compute( $code, $crc, $type );
             break;
             case 'ean8':
             case 'ean13':
-            $digit = Linear_Barcode_EuropeanArticleNumber::get_digit( $code, $type );
-            $hri = Linear_Barcode_EuropeanArticleNumber::compute( $code, $type );
+            $digit = Barcode_Linear_EuropeanArticleNumber::get_digit( $code, $type );
+            $hri = Barcode_Linear_EuropeanArticleNumber::compute( $code, $type );
             break;
             case 'upc':
-            $digit = Linear_Barcode_UniversalProductCode::get_digit( $code );
-            $hri = Linear_Barcode_UniversalProductCode::compute( $code );
+            $digit = Barcode_Linear_UniversalProductCode::get_digit( $code );
+            $hri = Barcode_Linear_UniversalProductCode::compute( $code );
             break;
             case 'code11':
-            $digit = Linear_Barcode_Code11::get_digit( $code );
+            $digit = Barcode_Linear_Code11::get_digit( $code );
             $hri = $code;
             break;
             case 'code39':
-            $digit = Linear_Barcode_Code39::get_digit( $code );
+            $digit = Barcode_Linear_Code39::get_digit( $code );
             $hri = $code;
             break;
             case 'code93':
-            $digit = Linear_Barcode_Code93::get_digit( $code, $crc );
+            $digit = Barcode_Linear_Code93::get_digit( $code, $crc );
             $hri = $code;
             break;
             case 'code128':
-            $digit = Linear_Barcode_Code128::get_digit( $code );
+            $digit = Barcode_Linear_Code128::get_digit( $code );
             $hri = $code;
             break;
             case 'codabar':
-            $digit = Linear_Barcode_Codabar::get_digit( $code );
+            $digit = Barcode_Linear_Codabar::get_digit( $code );
             $hri = $code;
             break;
             case 'msi':
-            $digit = Linear_Barcode_ModifiedPlessey::get_digit( $code, $crc );
-            $hri = Linear_Barcode_ModifiedPlessey::compute( $code, $crc );
+            $digit = Barcode_Linear_ModifiedPlessey::get_digit( $code, $crc );
+            $hri = Barcode_Linear_ModifiedPlessey::compute( $code, $crc );
             break;
             case 'datamatrix':
-            $digit = Matrix_Barcode_DataMatrix::get_digit( $code, $rect );
+            $digit = Barcode_Matrix_DataMatrix::get_digit( $code, $rect );
             $hri = $code;
             break;
         }
@@ -1338,14 +1338,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.4
-     * @access  private
-     *
+     * @since 2.0.4
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function _draw( $call, $res, $color, $x, $y, $angle, $type, $datas, $width, $height )
     {
@@ -1394,14 +1393,13 @@ class Barcode
     /**
      * Convert a bit string to an array of array of bit char
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function bit_string_to_2d_array( $digit )
     {
@@ -1420,14 +1418,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function digit_to_renderer( $fn, $xi, $yi, $angle, $mw, $mh, $digit )
     {
@@ -1493,14 +1490,13 @@ class Barcode
     /**
      * GD barcode renderer
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function digit_to_gd_renderer( $image_resource, $color, $xi, $yi, $angle, $mw, $mh, $digit )
     {
@@ -1515,14 +1511,13 @@ class Barcode
     /**
      * FPDF barcode renderer
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function digit_to_fpdf_renderer( $pdf, $color, $xi, $yi, $angle, $mw, $mh, $digit )
     {
@@ -1570,14 +1565,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function result( $xi, $yi, $columns, $lines, $mw, $mh, $cos, $sin )
     {
@@ -1595,14 +1589,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function _rotate( $x1, $y1, $cos, $sin , &$x, &$y )
     {
@@ -1614,14 +1607,13 @@ class Barcode
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function rotate( $x1, $y1, $angle , &$x, &$y )
     {
@@ -1638,36 +1630,34 @@ class Barcode
 }
 
 /**
- * Linear_Barcode_Interleaved2of5 Class
+ * Barcode_Linear_Interleaved2of5 Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_Interleaved2of5
+class Barcode_Linear_Interleaved2of5
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array( 'NNWWN', 'WNNNW', 'NWNNW', 'WWNNN', 'NNWNW', 'WNWNN', 'NWWNN', 'NNNWW', 'WNNWN', 'NWNWN' );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function compute( $code, $crc, $type )
     {
@@ -1707,14 +1697,13 @@ class Linear_Barcode_Interleaved2of5
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code, $crc, $type )
     {
@@ -1821,48 +1810,45 @@ class Linear_Barcode_Interleaved2of5
 }
 
 /**
- * Linear_Barcode_EuropeanArticleNumber Class
+ * Barcode_Linear_EuropeanArticleNumber Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_EuropeanArticleNumber
+class Barcode_Linear_EuropeanArticleNumber
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array( array( '0001101', '0100111', '1110010' ), array( '0011001', '0110011', '1100110' ), array( '0010011', '0011011', '1101100' ), array( '0111101', '0100001', '1000010' ), array( '0100011', '0011101', '1011100' ), array( '0110001', '0111001', '1001110' ), array( '0101111', '0000101', '1010000' ), array( '0111011', '0010001', '1000100' ), array( '0110111', '0001001', '1001000' ), array( '0001011', '0010111', '1110100' ) );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $first = array( '000000', '001011', '001101', '001110', '010011', '011001', '011100', '010101', '010110', '011010' );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code, $type )
     {
@@ -1967,14 +1953,13 @@ class Linear_Barcode_EuropeanArticleNumber
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function compute( $code, $type )
     {
@@ -2000,24 +1985,23 @@ class Linear_Barcode_EuropeanArticleNumber
 }
 
 /**
- * Linear_Barcode_UniversalProductCode Class
+ * Barcode_Linear_UniversalProductCode Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_UniversalProductCode
+class Barcode_Linear_UniversalProductCode
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code )
     {
@@ -2026,20 +2010,19 @@ class Linear_Barcode_UniversalProductCode
             $code = '0' . $code;
         }
 
-        return Linear_Barcode_EuropeanArticleNumber::get_digit( $code, 'ean13' );
+        return Barcode_Linear_EuropeanArticleNumber::get_digit( $code, 'ean13' );
     }
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function compute( $code )
     {
@@ -2048,41 +2031,39 @@ class Linear_Barcode_UniversalProductCode
             $code = '0' . $code;
         }
 
-        return substr( Linear_Barcode_EuropeanArticleNumber::compute( $code, 'ean13' ), 1 );
+        return substr( Barcode_Linear_EuropeanArticleNumber::compute( $code, 'ean13' ), 1 );
     }
 }
 
 /**
- * Linear_Barcode_ModifiedPlessey Class
+ * Barcode_Linear_ModifiedPlessey Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_ModifiedPlessey
+class Barcode_Linear_ModifiedPlessey
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array( '100100100100', '100100100110', '100100110100', '100100110110', '100110100100', '100110100110', '100110110100', '100110110110', '110100100100', '110100100110' );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function compute( $code, $crc )
     {
@@ -2116,14 +2097,13 @@ class Linear_Barcode_ModifiedPlessey
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function compute_mod_10( $code )
     {
@@ -2164,14 +2144,13 @@ class Linear_Barcode_ModifiedPlessey
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function compute_mod_11( $code )
     {
@@ -2192,14 +2171,13 @@ class Linear_Barcode_ModifiedPlessey
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code, $crc )
     {
@@ -2239,36 +2217,34 @@ class Linear_Barcode_ModifiedPlessey
 }
 
 /**
- * Linear_Barcode_Code11 Class
+ * Barcode_Linear_Code11 Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_Code11
+class Barcode_Linear_Code11
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array( '101011', '1101011', '1001011', '1100101', '1011011', '1101101', '1001101', '1010011', '1101001', '110101', '101101' );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code )
     {
@@ -2344,36 +2320,34 @@ class Linear_Barcode_Code11
 }
 
 /**
- * Linear_Barcode_Code39 Class
+ * Barcode_Linear_Code39 Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_Code39
+class Barcode_Linear_Code39
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array( '101001101101', '110100101011', '101100101011', '110110010101', '101001101011', '110100110101', '101100110101', '101001011011', '110100101101', '101100101101', '110101001011', '101101001011', '110110100101', '101011001011', '110101100101', '101101100101', '101010011011', '110101001101', '101101001101', '101011001101', '110101010011', '101101010011', '110110101001', '101011010011', '110101101001', '101101101001', '101010110011', '110101011001', '101101011001', '101011011001', '110010101011', '100110101011', '110011010101', '100101101011', '110010110101', '100110110101', '100101011011', '110010101101', '100110101101', '100100100101', '100100101001', '100101001001', '101001001001', '100101101101' );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code )
     {
@@ -2409,36 +2383,34 @@ class Linear_Barcode_Code39
 }
 
 /**
- * Linear_Barcode_Code93 Class
+ * Barcode_Linear_Code93 Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_Code93
+class Barcode_Linear_Code93
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array( '100010100', '101001000', '101000100', '101000010', '100101000', '100100100', '100100010', '101010000', '100010010', '100001010', '110101000', '110100100', '110100010', '110010100', '110010010', '110001010', '101101000', '101100100', '101100010', '100110100', '100011010', '101011000', '101001100', '101000110', '100101100', '100010110', '110110100', '110110010', '110101100', '110100110', '110010110', '110011010', '101101100', '101100110', '100110110', '100111010', '100101110', '111010100', '111010010', '111001010', '101101110', '101110110', '110101110', '100100110', '111011010', '111010110', '100110010', '101011110' );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code, $crc )
     {
@@ -2525,12 +2497,12 @@ class Linear_Barcode_Code93
 }
 
 /**
- * Linear_Barcode_Code128 Class
+ * Barcode_Linear_Code128 Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_Code128
+class Barcode_Linear_Code128
 {
     /**
      * DEFAULT
@@ -2538,12 +2510,11 @@ class Linear_Barcode_Code128
      * descriptive encoding array, helpful when debugging
      * Value Table A Table B Table C ASCII Code  Character   Pattern
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array(
         '11011001100', //  0    Space   Space   00      0032 or 0212    Space or O  11011001100
@@ -2659,14 +2630,13 @@ class Linear_Barcode_Code128
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code )
     {
@@ -2841,36 +2811,34 @@ class Linear_Barcode_Code128
 }
 
 /**
- * Linear_Barcode_Codabar Class
+ * Barcode_Linear_Codabar Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Linear_Barcode_Codabar
+class Barcode_Linear_Codabar
 {
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $encoding = array( '101010011', '101011001', '101001011', '110010101', '101101001', '110101001', '100101011', '100101101', '100110101', '110100101', '101001101', '101100101', '1101011011', '1101101011', '1101101101', '1011011011', '1011001001', '1010010011', '1001001011', '1010011001' );
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $code )
     {
@@ -2881,7 +2849,7 @@ class Linear_Barcode_Codabar
         $intercharacter = '0';
 
         //-------------------------------------------------
-        // add start : A -> D : arbitrary choose A
+        // ADD START : A -> D : ARBITRARY CHOOSE A
         //-------------------------------------------------
 
         $result .= self::$encoding[ 16 ] . $intercharacter;
@@ -2898,7 +2866,7 @@ class Linear_Barcode_Codabar
         }
 
         //-------------------------------------------------
-        // add stop : A -> D : arbitrary choose A
+        // ADD STOP : A -> D : ARBITRARY CHOOSE A
         //-------------------------------------------------
 
         $result .= self::$encoding[ 16 ];
@@ -2908,160 +2876,151 @@ class Linear_Barcode_Codabar
 }
 
 /**
- * Matrix_Barcode_DataMatrix Class
+ * Barcode_Matrix_DataMatrix Class
  *
- * @since   2.0.3
+ * @since 2.0.3
  * @package BCCL
  */
-class Matrix_Barcode_DataMatrix
+class Barcode_Matrix_DataMatrix
 {
     /**
      * 24 squares et 6 rectangular.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $length_rows = array( 10, 12, 14, 16, 18, 20, 22, 24, 26, 32, 36, 40, 44, 48, 52, 64, 72, 80,  88, 96, 104, 120, 132, 144, 8, 8, 12, 12, 16, 16 );
 
     /**
      * Number of columns for the entire datamatrix.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $length_cols = array( 10, 12, 14, 16, 18, 20, 22, 24, 26, 32, 36, 40, 44, 48, 52, 64, 72, 80, 88, 96, 104, 120, 132, 144, 18, 32, 26, 36, 36, 48 );
 
     /**
      * Number of data codewords for the datamatrix.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $data_code_word_count = array( 3, 5, 8, 12, 18, 22, 30, 36, 44, 62, 86, 114, 144, 174, 204, 280, 368, 456, 576, 696, 816, 1050, 1304, 1558, 5, 10, 16, 22, 32, 49 );
 
     /**
      * Number of Reed-Solomon codewords for the datamatrix.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $solomon_code_word_count = array( 5, 7, 10, 12, 14, 18, 20, 24, 28, 36, 42, 48, 56, 68, 84, 112, 144, 192, 224, 272, 336, 408, 496, 620, 7, 11, 14, 18, 24, 28 );
 
     /**
      * Number of rows per region.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $data_region_rows = array( 8, 10, 12, 14, 16, 18, 20, 22, 24, 14, 16, 18, 20, 22, 24, 14, 16, 18, 20, 22, 24, 18, 20, 22, 6,  6, 10, 10, 14, 14 );
 
     /**
      * Number of columns per region.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $data_region_cols = array( 8, 10, 12, 14, 16, 18, 20, 22, 24, 14, 16, 18, 20, 22, 24, 14, 16, 18, 20, 22, 24, 18, 20, 22, 16, 14, 24, 16, 16, 22 );
 
     /**
      * Number of regions per row.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $region_rows = array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 6, 6, 6, 1, 1, 1, 1, 1, 1 );
 
     /**
      * Number of regions per column.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $region_cols = array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4, 6, 6, 6, 1, 2, 1, 2, 2, 2 );
 
     /**
      * Number of blocks.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $interleaved_blocks = array( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 4, 4, 4, 4, 6, 6, 8, 8, 1, 1, 1, 1, 1, 1 );
 
     /**
      * Table of log for the Galois field.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $table_of_log = array( -255, 255, 1, 240, 2, 225, 241, 53, 3, 38, 226, 133, 242, 43, 54, 210, 4, 195, 39, 114, 227, 106, 134, 28, 243, 140, 44, 23, 55, 118, 211, 234, 5, 219, 196, 96, 40, 222, 115, 103, 228, 78, 107, 125, 135, 8, 29, 162, 244, 186, 141, 180, 45, 99, 24, 49, 56, 13, 119, 153, 212, 199, 235, 91, 6, 76, 220, 217, 197, 11, 97, 184, 41, 36, 223, 253, 116, 138, 104, 193, 229, 86, 79, 171, 108, 165, 126, 145, 136, 34, 9, 74, 30, 32, 163, 84, 245, 173, 187, 204, 142, 81, 181, 190, 46, 88, 100, 159, 25, 231, 50, 207, 57, 147, 14, 67, 120, 128, 154, 248, 213, 167, 200, 63, 236, 110, 92, 176, 7, 161, 77, 124, 221, 102, 218, 95, 198, 90, 12, 152, 98, 48, 185, 179, 42, 209, 37, 132, 224, 52, 254, 239, 117, 233, 139, 22, 105, 27, 194, 113, 230, 206, 87, 158, 80, 189, 172, 203, 109, 175, 166, 62, 127, 247, 146, 66, 137, 192, 35, 252, 10, 183, 75, 216, 31, 83, 33, 73, 164, 144, 85, 170, 246, 65, 174, 61, 188, 202, 205, 157, 143, 169, 82, 72, 182, 215, 191, 251, 47, 178, 89, 151, 101, 94, 160, 123, 26, 112, 232, 21, 51, 238, 208, 131, 58, 69, 148, 18, 15, 16, 68, 17, 121, 149, 129, 19, 155, 59, 249, 70, 214, 250, 168, 71, 201, 156, 64, 60, 237, 130, 111, 20, 93, 122, 177, 150 );
 
     /**
      * Table of aLog for the Galois field.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @var     array
+     * @var <array>
      */
     private static $table_of_alog = array( 1, 2, 4, 8, 16, 32, 64, 128, 45, 90, 180, 69, 138, 57, 114, 228, 229, 231, 227, 235, 251, 219, 155, 27, 54, 108, 216, 157, 23, 46, 92, 184, 93, 186, 89, 178, 73, 146, 9, 18, 36, 72, 144, 13, 26, 52, 104, 208, 141, 55, 110, 220, 149, 7, 14, 28, 56, 112, 224, 237, 247, 195, 171, 123, 246, 193, 175, 115, 230, 225, 239, 243, 203, 187, 91, 182, 65, 130, 41, 82, 164, 101, 202, 185, 95, 190, 81, 162, 105, 210, 137, 63, 126, 252, 213, 135, 35, 70, 140, 53, 106, 212, 133, 39, 78, 156, 21, 42, 84, 168, 125, 250, 217, 159, 19, 38, 76, 152, 29, 58, 116, 232, 253, 215, 131, 43, 86, 172, 117, 234, 249, 223, 147, 11, 22, 44, 88, 176, 77, 154, 25, 50, 100, 200, 189, 87, 174, 113, 226, 233, 255, 211, 139, 59, 118, 236, 245, 199, 163, 107, 214, 129, 47, 94, 188, 85, 170, 121, 242, 201, 191, 83, 166, 97, 194, 169, 127, 254, 209, 143, 51, 102, 204, 181, 71, 142, 49, 98, 196, 165, 103, 206, 177, 79, 158, 17, 34, 68, 136, 61, 122, 244, 197, 167, 99, 198, 161, 111, 222, 145, 15, 30, 60, 120, 240, 205, 183, 67, 134, 33, 66, 132, 37, 74, 148, 5, 10, 20, 40, 80, 160, 109, 218, 153, 31, 62, 124, 248, 221, 151, 3, 6, 12, 24, 48, 96, 192, 173, 119, 238, 241, 207, 179, 75, 150, 1 );
 
     /**
      * Multiplication in Galois field gf( 2^8 ).
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function champ_galois_mult( $a, $b )
     {
-        if ( ! $a || ! $b ) return 0;
+        if ( $a == false || $b == false )
+        {
+            return 0;
+        }
 
         return self::$table_of_alog[ ( self::$table_of_log[ $a ] + self::$table_of_log[ $b ] ) % 255 ];
     }
@@ -3069,20 +3028,25 @@ class Matrix_Barcode_DataMatrix
     /**
      * The operation a * 2^b in Galois field gf( 2^8 ).
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function champ_galois_doub( $a, $b )
     {
-        if ( ! $a ) return 0;
+        if ( $a == false )
+        {
+            return 0;
+        }
 
-        if ( ! $b ) return $a;
+        if ( $b == false )
+        {
+            return $a;
+        }
 
         return self::$table_of_alog[ ( self::$table_of_log[ $a ] + $b ) % 255 ];
     }
@@ -3090,14 +3054,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * Sum in Galois field gf( 2^8 ).
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function champ_galois_sum( $a, $b )
     {
@@ -3107,24 +3070,32 @@ class Matrix_Barcode_DataMatrix
     /**
      * Choose the good index for tables.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
-    private static function select_index( $data_code_wordsCount, $rectangular )
+    private static function select_index( $data_code_words_count, $rectangular )
     {
-        if ( ( $data_code_wordsCount < 1 || $data_code_wordsCount > 1558 ) && ! $rectangular ) return ( -1 );
+        if ( ( $data_code_words_count < 1 || $data_code_words_count > 1558 ) && $rectangular == false )
+        {
+            return ( -1 );
+        }
 
-        if ( ( $data_code_wordsCount < 1 || $data_code_wordsCount > 49 ) && $rectangular ) return ( -1 );
+        if ( ( $data_code_words_count < 1 || $data_code_words_count > 49 ) && $rectangular )
+        {
+            return ( -1 );
+        }
 
         $n = $rectangular ? 24 : 0;
 
-        while ( self::$data_code_word_count[ $n ] < $data_code_wordsCount ) $n++;
+        while ( self::$data_code_word_count[ $n ] < $data_code_words_count )
+        {
+            $n++;
+        }
 
         return $n;
     }
@@ -3132,14 +3103,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function encode_data_code_words_ascii( $text )
     {
@@ -3161,7 +3131,7 @@ class Matrix_Barcode_DataMatrix
 
                 $n++;
             }
-            else if ( ( $c >= 48 && $c <= 57 ) && ( $i + 1 < $len ) && ( preg_match( '`[0-9]`', $text[ $i + 1 ] ) ) )
+            else if ( $c >= 48 && $c <= 57 && ( $i + 1 ) < $len && preg_match( '`[0-9]`', $text[ $i + 1 ] ) )
             {
                 $c = ( ( $c - 48 ) * 10 ) + intval( $text[ $i + 1 ] );
 
@@ -3185,14 +3155,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function add_pad_code_word( &$tab, $from, $to )
     {
@@ -3211,14 +3180,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * Calculate the reed solomon factors.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function calculate_solomon_factor_table( $solomon_code_word_count )
     {
@@ -3230,7 +3198,10 @@ class Matrix_Barcode_DataMatrix
             {
                 $g[ $j ] = self::champ_galois_doub( $g[ $j ], $i );
 
-                if ( $j > 0 ) $g[ $j ] = self::champ_galois_sum( $g[ $j ], $g[ $j - 1 ] );
+                if ( $j > 0 )
+                {
+                    $g[ $j ] = self::champ_galois_sum( $g[ $j ], $g[ $j - 1 ] );
+                }
             }
         }
 
@@ -3240,14 +3211,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * Add the Reed Solomon codewords.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function add_reed_solomon_code_word( $n_solomon_code_word, $coefficients_table, $n_data_code_word, &$data_table, $blocks )
     {
@@ -3285,7 +3255,7 @@ class Matrix_Barcode_DataMatrix
             }
 
             //-------------------------------------------------
-            // Renversement des blocs calcules
+            // RENVERSEMENT DES BLOCS CALCULES
             //-------------------------------------------------
 
             $j = $n_data_code_word + $k;
@@ -3304,14 +3274,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * Transform integer to tab of bits.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function get_bits( $entier )
     {
@@ -3328,20 +3297,19 @@ class Matrix_Barcode_DataMatrix
     /**
      * Place codewords into the matrix.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function next( $etape, $total_rows, $total_cols, $code_words_bits, &$datamatrix, &$assigned )
     {
         //-------------------------------------------------
-        // Place of the 8st bit from the first
-        // character to [ 4 ][ 0 ]
+        // PLACE OF THE 8ST BIT FROM THE FIRST
+        // CHARACTER TO [ 4 ][ 0 ]
         //-------------------------------------------------
 
         $chr = 0;
@@ -3353,28 +3321,28 @@ class Matrix_Barcode_DataMatrix
         do
         {
             //-------------------------------------------------
-            // Check for a special case of corner
+            // CHECK FOR A SPECIAL CASE OF CORNER
             //-------------------------------------------------
 
-            if ( ( $row == $total_rows ) && ( $col == 0 ) )
+            if ( $row == $total_rows && $col == 0 )
             {
                 self::pattern_shape_special_1( $datamatrix, $assigned, $code_words_bits[ $chr ], $total_rows, $total_cols );
 
                 $chr++;
             }
-            else if ( ( $etape < 3 ) && ( $row == $total_rows - 2 ) && ( $col == 0 ) && ( $total_cols % 4 != 0 ) )
+            else if ( $etape < 3 && $row == ( $total_rows - 2 ) && $col == 0 && ( $total_cols % 4 ) != 0 )
             {
                 self::pattern_shape_special_2( $datamatrix, $assigned, $code_words_bits[ $chr ], $total_rows, $total_cols );
 
                 $chr++;
             }
-            else if ( ( $row == $total_rows - 2 ) && ( $col == 0 ) && ( $total_cols % 8 == 4 ) )
+            else if ( $row == ( $total_rows - 2 ) && $col == 0 && ( $total_cols % 8 ) == 4 )
             {
                 self::pattern_shape_special_3( $datamatrix, $assigned, $code_words_bits[ $chr ], $total_rows, $total_cols );
 
                 $chr++;
             }
-            else if ( ( $row == $total_rows + 4 ) && ( $col == 2 ) && ( $total_cols % 8 == 0 ) )
+            else if ( $row == ( $total_rows + 4 ) && $col == 2 && ( $total_cols % 8 ) == 0 )
             {
                 self::pattern_shape_special_4( $datamatrix, $assigned, $code_words_bits[ $chr ], $total_rows, $total_cols );
 
@@ -3382,12 +3350,12 @@ class Matrix_Barcode_DataMatrix
             }
 
             //-------------------------------------------------
-            // Go up and right in the datamatrix
+            // GO UP AND RIGHT IN THE DATAMATRIX
             //-------------------------------------------------
 
             do
             {
-                if ( ( $row < $total_rows ) && ( $col >= 0 ) && ( ! isset( $assigned[ $row ][ $col ] ) || $assigned[ $row ][ $col ] != 1 ) )
+                if ( $row < $total_rows && $col >= 0 && ( isset( $assigned[ $row ][ $col ] ) == false || $assigned[ $row ][ $col ] != 1 ) )
                 {
                     self::pattern_shape_standard( $datamatrix, $assigned, $code_words_bits[ $chr ], $row, $col, $total_rows, $total_cols );
 
@@ -3395,20 +3363,22 @@ class Matrix_Barcode_DataMatrix
                 }
 
                 $row -= 2;
+
                 $col += 2;
             }
-            while ( ( $row >= 0 ) && ( $col < $total_cols ) );
+            while ( $row >= 0 && $col < $total_cols );
 
             $row += 1;
+
             $col += 3;
 
             //-------------------------------------------------
-            // Go down and left in the datamatrix
+            // GO DOWN AND LEFT IN THE DATAMATRIX
             //-------------------------------------------------
 
             do
             {
-                if ( ( $row >= 0 ) && ( $col < $total_cols ) && ( ! isset( $assigned[ $row ][ $col ] ) || $assigned[ $row ][ $col ] != 1 ) )
+                if ( $row >= 0 && $col < $total_cols && ( isset( $assigned[ $row ][ $col ] ) == false || $assigned[ $row ][ $col ] != 1 ) )
                 {
                     self::pattern_shape_standard( $datamatrix, $assigned, $code_words_bits[ $chr ], $row, $col, $total_rows, $total_cols );
 
@@ -3416,27 +3386,28 @@ class Matrix_Barcode_DataMatrix
                 }
 
                 $row += 2;
+
                 $col -= 2;
             }
-            while ( ( $row < $total_rows ) && ( $col >= 0 ) );
+            while ( $row < $total_rows && $col >= 0 );
 
             $row += 3;
+
             $col += 1;
         }
-        while ( ( $row < $total_rows ) || ( $col < $total_cols ) );
+        while ( $row < $total_rows || $col < $total_cols );
     }
 
     /**
      * Place bits in the matrix ( standard or special case ).
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function pattern_shape_standard( &$datamatrix, &$assigned, $bits, $row, $col, $total_rows, $total_cols )
     {
@@ -3453,14 +3424,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function pattern_shape_special_1( &$datamatrix, &$assigned, $bits, $total_rows, $total_cols )
     {
@@ -3477,14 +3447,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function pattern_shape_special_2( &$datamatrix, &$assigned, $bits, $total_rows, $total_cols )
     {
@@ -3501,14 +3470,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function pattern_shape_special_3( &$datamatrix, &$assigned, $bits, $total_rows, $total_cols )
     {
@@ -3525,14 +3493,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function pattern_shape_special_4( &$datamatrix, &$assigned, $bits, $total_rows, $total_cols )
     {
@@ -3549,14 +3516,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * Put a bit into the matrix.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function place_bit_in_datamatrix( &$datamatrix, &$assigned, $bit, $row, $col, $total_rows, $total_cols )
     {
@@ -3574,7 +3540,7 @@ class Matrix_Barcode_DataMatrix
             $row += 4 - ( ( $total_cols + 4 ) % 8 );
         }
 
-        if ( ! isset( $assigned[ $row ][ $col ] ) || $assigned[ $row ][ $col ] != 1 )
+        if ( isset( $assigned[ $row ][ $col ] ) == false || $assigned[ $row ][ $col ] != 1 )
         {
             $datamatrix[ $row ][ $col ] = $bit;
 
@@ -3585,14 +3551,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * Add the finder pattern.
      *
-     * @since   2.0.3
-     * @access  private
-     *
+     * @since 2.0.3
+     * @access private
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function add_finder_pattern( $datamatrix, $rows_region, $cols_region, $rows_region_code_word, $cols_region_code_word )
     {
@@ -3600,17 +3565,17 @@ class Matrix_Barcode_DataMatrix
 
         $total_cols_code_word = ( $cols_region_code_word + 2 ) * $cols_region;
 
-        $datamatrix_temp = array();
+        $datamatrix_temporary = array();
 
-        $datamatrix_temp[ 0 ] = array_fill( 0, $total_cols_code_word + 2, 0 );
+        $datamatrix_temporary[ 0 ] = array_fill( 0, $total_cols_code_word + 2, 0 );
 
         for ( $i = 0; $i < $total_rows_code_word; $i++ )
         {
-            $datamatrix_temp[ $i + 1 ] = array();
+            $datamatrix_temporary[ $i + 1 ] = array();
 
-            $datamatrix_temp[ $i + 1 ][ 0 ] = 0;
+            $datamatrix_temporary[ $i + 1 ][ 0 ] = 0;
 
-            $datamatrix_temp[ $i + 1 ][ $total_cols_code_word + 1 ] = 0;
+            $datamatrix_temporary[ $i + 1 ][ $total_cols_code_word + 1 ] = 0;
 
             for ( $j = 0; $j < $total_cols_code_word; $j++ )
             {
@@ -3618,69 +3583,68 @@ class Matrix_Barcode_DataMatrix
                 {
                     if ( $j % 2 == 0 )
                     {
-                        $datamatrix_temp[ $i + 1 ][ $j + 1 ] = 1;
+                        $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = 1;
                     }
                     else
                     {
-                        $datamatrix_temp[ $i + 1 ][ $j + 1 ] = 0;
+                        $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = 0;
                     }
                 }
                 else if ( $i % ( $rows_region_code_word + 2 ) == $rows_region_code_word + 1 )
                 {
-                    $datamatrix_temp[ $i + 1 ][ $j + 1 ] = 1;
+                    $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = 1;
                 }
                 else if ( $j % ( $cols_region_code_word + 2 ) == $cols_region_code_word + 1 )
                 {
                     if ( $i % 2 == 0 )
                     {
-                        $datamatrix_temp[ $i + 1 ][ $j + 1 ] = 0;
+                        $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = 0;
                     }
                     else
                     {
-                        $datamatrix_temp[ $i + 1 ][ $j + 1 ] = 1;
+                        $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = 1;
                     }
                 }
                 else if ( $j % ( $cols_region_code_word + 2 ) == 0 )
                 {
-                    $datamatrix_temp[ $i + 1 ][ $j + 1 ] = 1;
+                    $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = 1;
                 }
                 else
                 {
-                    $datamatrix_temp[ $i + 1 ][ $j + 1 ] = 0;
+                    $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = 0;
 
                     // todo : parseInt => ?
 
-                    $datamatrix_temp[ $i + 1 ][ $j + 1 ] = $datamatrix[ $i - 1 - ( 2 * ( floor( $i / ( $rows_region_code_word + 2 ) ) ) ) ][ $j - 1 - ( 2 * ( floor( $j / ( $cols_region_code_word + 2 ) ) ) ) ];
+                    $datamatrix_temporary[ $i + 1 ][ $j + 1 ] = $datamatrix[ $i - 1 - ( 2 * ( floor( $i / ( $rows_region_code_word + 2 ) ) ) ) ][ $j - 1 - ( 2 * ( floor( $j / ( $cols_region_code_word + 2 ) ) ) ) ];
                 }
             }
         }
 
-        $datamatrix_temp[ $total_rows_code_word + 1 ] = array();
+        $datamatrix_temporary[ $total_rows_code_word + 1 ] = array();
 
         for ( $j = 0; $j < $total_cols_code_word + 2; $j++ )
         {
-            $datamatrix_temp[ $total_rows_code_word + 1 ][ $j ] = 0;
+            $datamatrix_temporary[ $total_rows_code_word + 1 ][ $j ] = 0;
         }
 
-        return $datamatrix_temp;
+        return $datamatrix_temporary;
     }
 
     /**
      * DEFAULT
      *
-     * @since   2.0.3
-     * @access  public
-     *
+     * @since 2.0.3
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_digit( $text, $rectangular )
     {
         //-------------------------------------------------
-        // Code the text in the ASCII mode
+        // CODE THE TEXT IN THE ASCII MODE
         //-------------------------------------------------
 
         $data_code_words = self::encode_data_code_words_ascii( $text );
@@ -3688,31 +3652,39 @@ class Matrix_Barcode_DataMatrix
         $data_code_word_count = count( $data_code_words );
 
         //-------------------------------------------------
-        // Select the index for the data tables
+        // SELECT THE INDEX FOR THE DATA TABLES
         //-------------------------------------------------
 
         $index = self::select_index( $data_code_word_count, $rectangular );
 
         //-------------------------------------------------
-        // Number of data code word
+        // NUMBER OF DATA CODE WORD
         //-------------------------------------------------
+
+        // header( 'Content-Type:text/plain');
+
+        // echo var_export( self::$data_code_word_count ) . PHP_EOL;
+
+        // echo var_export( $index ) . PHP_EOL;
+
+        // exit;
 
         $total_data_code_word_count = self::$data_code_word_count[ $index ];
 
         //-------------------------------------------------
-        // Number of reed solomon code word
+        // NUMBER OF REED SOLOMON CODE WORD
         //-------------------------------------------------
 
         $solomon_code_word_count = self::$solomon_code_word_count[ $index ];
 
         //-------------------------------------------------
-        // Number of code word
+        // NUMBER OF CODE WORD
         //-------------------------------------------------
 
         $total_code_word_count = $total_data_code_word_count + $solomon_code_word_count;
 
         //-------------------------------------------------
-        // Size of symbol
+        // SIZE OF SYMBOL
         //-------------------------------------------------
 
         $rows_total = self::$length_rows[ $index ];
@@ -3720,7 +3692,7 @@ class Matrix_Barcode_DataMatrix
         $cols_total = self::$length_cols[ $index ];
 
         //-------------------------------------------------
-        // Number of region
+        // NUMBER OF REGION
         //-------------------------------------------------
 
         $rows_region = self::$region_rows[ $index ];
@@ -3732,15 +3704,15 @@ class Matrix_Barcode_DataMatrix
         $cols_region_code_word = self::$data_region_cols[ $index ];
 
         //-------------------------------------------------
-        // Size of matrice data
+        // SIZE OF MATRICE DATA
         //-------------------------------------------------
 
-        $rows_length_matrice = $rows_total - 2 * $rows_region;
+        $rows_length_matrice = ( $rows_total - 2 ) * $rows_region;
 
-        $cols_length_matrice = $cols_total - 2 * $cols_region;
+        $cols_length_matrice = ( $cols_total - 2 ) * $cols_region;
 
         //-------------------------------------------------
-        // Number of Reed Solomon blocks
+        // NUMBER OF REED SOLOMON BLOCKS
         //-------------------------------------------------
 
         $blocks = self::$interleaved_blocks[ $index ];
@@ -3748,25 +3720,25 @@ class Matrix_Barcode_DataMatrix
         $error_blocks = $solomon_code_word_count / $blocks;
 
         //-------------------------------------------------
-        // Add codewords pads
+        // ADD CODEWORDS PADS
         //-------------------------------------------------
 
         self::add_pad_code_word( $data_code_words, $data_code_word_count, $total_data_code_word_count );
 
         //-------------------------------------------------
-        // Calculate correction coefficients
+        // CALCULATE CORRECTION COEFFICIENTS
         //-------------------------------------------------
 
         $coefficients_table = self::calculate_solomon_factor_table( $error_blocks );
 
         //-------------------------------------------------
-        // Add Reed Solomon codewords
+        // ADD REED SOLOMON CODEWORDS
         //-------------------------------------------------
 
         self::add_reed_solomon_code_word( $solomon_code_word_count, $coefficients_table, $total_data_code_word_count, $data_code_words, $blocks );
 
         //-------------------------------------------------
-        // Calculte bits from codewords
+        // CALCULTE BITS FROM CODEWORDS
         //-------------------------------------------------
 
         $code_words_bits = array();
@@ -3781,7 +3753,7 @@ class Matrix_Barcode_DataMatrix
         $assigned = array_fill( 0, $cols_length_matrice, array() );
 
         //-------------------------------------------------
-        // Add the bottom-right corner if needed
+        // ADD THE BOTTOM-RIGHT CORNER IF NEEDED
         //-------------------------------------------------
 
         if ( ( ( $rows_length_matrice * $cols_length_matrice ) % 8 ) == 4 )
@@ -3798,13 +3770,13 @@ class Matrix_Barcode_DataMatrix
         }
 
         //-------------------------------------------------
-        // Put the codewords into the matrix
+        // PUT THE CODEWORDS INTO THE MATRIX
         //-------------------------------------------------
 
         self::next( 0, $rows_length_matrice, $cols_length_matrice, $code_words_bits, $datamatrix, $assigned );
 
         //-------------------------------------------------
-        // Add the finder pattern
+        // ADD THE FINDER PATTERN
         //-------------------------------------------------
 
         $datamatrix = self::add_finder_pattern( $datamatrix, $rows_region, $cols_region, $rows_region_code_word, $cols_region_code_word );
@@ -3815,14 +3787,13 @@ class Matrix_Barcode_DataMatrix
     /**
      * DEFAULT
      *
-     * @since   2.0.4
-     * @access  public
-     *
+     * @since 2.0.4
+     * @access public
      * @static
      *
-     * @param   integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return  integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     public static function get_lenght_column( $text )
     {
@@ -3837,20 +3808,20 @@ class Matrix_Barcode_DataMatrix
 }
 
 /**
- * Matrix_Barcode_QuickResponseCode Class
+ * Barcode_Matrix_QuickResponseCode Class
  *
- * @since   1.2.0
+ * @since1.2.0
  * @package BCCL
  */
-class Matrix_Barcode_QuickResponseCode
+class Barcode_Matrix_QuickResponseCode
 {
     /**
      * Error correction level low.
      *
      * 7% of codewords can be restored.
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const ECC_L = 1;
 
@@ -3859,8 +3830,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * 15% of codewords can be restored.
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const ECC_M = 0;
 
@@ -3869,8 +3840,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * 25% of codewords can be restored.
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const ECC_Q = 3;
 
@@ -3879,8 +3850,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * 30% of codewords can be restored.
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const ECC_H = 2;
 
@@ -3893,8 +3864,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 0001
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const NUM = 1;
 
@@ -3907,8 +3878,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 0010
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const ALPHA = 2;
 
@@ -3921,8 +3892,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 0100
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const BIN = 4;
 
@@ -3935,8 +3906,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 1000
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const KANJI = 8;
 
@@ -3945,8 +3916,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 0011
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const APP = 3;
 
@@ -3955,8 +3926,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 0111
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const ECI = 7;
 
@@ -3965,8 +3936,8 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 0101
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const FNC1_1 = 5;
 
@@ -3975,115 +3946,107 @@ class Matrix_Barcode_QuickResponseCode
      *
      * Indicator: 1001
      *
-     * @since  2.0.17
-     * @var    integer
+     * @since 2.0.17
+     * @var <integer>
      */
     const FNC1_2 = 9;
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $cap = array( 208, 359, 567, 807, 1079, 1383, 1568, 1936, 2336, 2768, 3232, 3728, 4256, 4651, 5243, 5867, 6523, 7211, 7931, 8683, 9252, 10068, 10916, 11796, 12708, 13652, 14628, 15371, 16411, 17483, 18587, 19723, 20891, 22091, 23008, 24272, 25568, 26896, 28256, 29648 );
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $ver = array( 1 => array( 34, 41, 17, 27, 63, 77, 34, 48, 101, 127, 58, 77, 149, 187, 82, 111, 202, 255, 106, 144, 255, 322, 139, 178, 293, 370, 154, 207, 365, 461, 202, 259, 432, 552, 235, 312, 513, 652, 288, 364, 604, 772, 331, 427, 691, 883, 374, 489, 796, 1022, 427, 580, 871, 1101, 468, 621, 991, 1250, 530, 703, 1082, 1408, 602, 775, 1212, 1548, 674, 876, 1346, 1725, 746, 948, 1500, 1903, 813, 1063, 1600, 2061, 919, 1159, 1708, 2232, 969, 1224, 1872, 2409, 1056, 1358, 2059, 2620, 1108, 1468, 2188, 2812, 1228, 1588, 2395, 3057, 1286, 1718, 2544, 3283, 1425, 1804, 2701, 3514, 1501, 1933, 2857, 3669, 1581, 2085, 3035, 3909, 1677, 2181, 3289, 4158, 1782, 2358, 3486, 4417, 1897, 2473, 3693, 4686, 2022, 2670, 3909, 4965, 2157, 2805, 4134, 5253, 2301, 2949, 4343, 5529, 2361, 3081, 4588, 5836, 2524, 3244, 4775, 6153, 2625, 3417, 5039, 6479, 2735, 3599, 5313, 6743, 2927, 3791, 5596, 7089, 3057, 3993 ), 2 => array( 20, 25, 10, 16, 38, 47, 20, 29, 61, 77, 35, 47, 90, 114, 50, 67, 122, 154, 64, 87, 154, 195, 84, 108, 178, 224, 93, 125, 221, 279, 122, 157, 262, 335, 143, 189, 311, 395, 174, 221, 366, 468, 200, 259, 419, 535, 227, 296, 483, 619, 259, 352, 528, 667, 283, 376, 600, 758, 321, 426, 656, 854, 365, 470, 734, 938, 408, 531, 816, 1046, 452, 574, 909, 1153, 493, 644, 970, 1249, 557, 702, 1035, 1352, 587, 742, 1134, 1460, 640, 823, 1248, 1588, 672, 890, 1326, 1704, 744, 963, 1451, 1853, 779, 1041, 1542, 1990, 864, 1094, 1637, 2132, 910, 1172, 1732, 2223, 958, 1263, 1839, 2369, 1016, 1322, 1994, 2520, 1080, 1429, 2113, 2677, 1150, 1499, 2238, 2840, 1226, 1618, 2369, 3009, 1307, 1700, 2506, 3183, 1394, 1787, 2632, 3351, 1431, 1867, 2780, 3537, 1530, 1966, 2894, 3729, 1591, 2071, 3054, 3927, 1658, 2181, 3220, 4087, 1774, 2298, 3391, 4296, 1852, 2420 ), 4 => array( 14, 17, 7, 11, 26, 32, 14, 20, 42, 53, 24, 32, 62, 78, 34, 46, 84, 106, 44, 60, 106, 134, 58, 74, 122, 154, 64, 86, 152, 192, 84, 108, 180, 230, 98, 130, 213, 271, 119, 151, 251, 321, 137, 177, 287, 367, 155, 203, 331, 425, 177, 241, 362, 458, 194, 258, 412, 520, 220, 292, 450, 586, 250, 322, 504, 644, 280, 364, 560, 718, 310, 394, 624, 792, 338, 442, 666, 858, 382, 482, 711, 929, 403, 509, 779, 1003, 439, 565, 857, 1091, 461, 611, 911, 1171, 511, 661, 997, 1273, 535, 715, 1059, 1367, 593, 751, 1125, 1465, 625, 805, 1190, 1528, 658, 868, 1264, 1628, 698, 908, 1370, 1732, 742, 982, 1452, 1840, 790, 1030, 1538, 1952, 842, 1112, 1628, 2068, 898, 1168, 1722, 2188, 958, 1228, 1809, 2303, 983, 1283, 1911, 2431, 1051, 1351, 1989, 2563, 1093, 1423, 2099, 2699, 1139, 1499, 2213, 2809, 1219, 1579, 2331, 2953, 1273, 1663 ), 8 => array( 8, 10, 4, 7, 16, 20, 8, 12, 26, 32, 15, 20, 38, 48, 21, 28, 52, 65, 27, 37, 65, 82, 36, 45, 75, 95, 39, 53, 93, 118, 52, 66, 111, 141, 60, 80, 131, 167, 74, 93, 155, 198, 85, 109, 177, 226, 96, 125, 204, 262, 109, 149, 223, 282, 120, 159, 254, 320, 136, 180, 277, 361, 154, 198, 310, 397, 173, 224, 345, 442, 191, 243, 384, 488, 208, 272, 410, 528, 235, 297, 438, 572, 248, 314, 480, 618, 270, 348, 528, 672, 284, 376, 561, 721, 315, 407, 614, 784, 330, 440, 652, 842, 365, 462, 692, 902, 385, 496, 732, 940, 405, 534, 778, 1002, 430, 559, 843, 1066, 457, 604, 894, 1132, 486, 634, 947, 1201, 518, 684, 1002, 1273, 553, 719, 1060, 1347, 590, 756, 1113, 1417, 605, 790, 1176, 1496, 647, 832, 1224, 1577, 673, 876, 1292, 1661, 701, 923, 1362, 1729, 750, 972, 1435, 1817, 784, 1024 ) );
 
     /**
      * Confirmed Arbitrary
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $ebl = array( array( 1, 16 ), array( 1, 19 ), array( 1, 9 ), array( 1, 13 ), array( 1, 28 ), array( 1, 34 ), array( 1, 16 ), array( 1, 22 ), array( 1, 44 ), array( 1, 55 ), array( 2, 13 ), array( 2, 17 ), array( 2, 32 ), array( 1, 80 ), array( 4, 9 ), array( 2, 24 ), array( 2, 43 ), array( 1, 108 ), array( 2, 11, 2, 12 ), array( 2, 15, 2, 16 ), array( 4, 27 ), array( 2, 68 ), array( 4, 15 ), array( 4, 19 ), array( 4, 31 ), array( 2, 78 ), array( 4, 13, 1, 14 ), array( 2, 14, 4, 15 ), array( 2, 38, 2, 39 ), array( 2, 97 ), array( 4, 14, 2, 15 ), array( 4, 18, 2, 19 ), array( 3, 36, 2, 37 ), array( 2, 116 ), array( 4, 12, 4, 13 ), array( 4, 16, 4, 17 ), array( 4, 43, 1, 44 ), array( 2, 68, 2, 69 ), array( 6, 15, 2, 16 ), array( 6, 19, 2, 20 ), array( 1, 50, 4, 51 ), array( 4, 81 ), array( 3, 12, 8, 13 ), array( 4, 22, 4, 23 ), array( 6, 36, 2, 37 ), array( 2, 92, 2, 93 ), array( 7, 14, 4, 15 ), array( 4, 20, 6, 21 ), array( 8, 37, 1, 38 ), array( 4, 107 ), array( 12, 11, 4, 12 ), array( 8, 20, 4, 21 ), array( 4, 40, 5, 41 ), array( 3, 115, 1, 116 ), array( 11, 12, 5, 13 ), array( 11, 16, 5, 17 ), array( 5, 41, 5, 42 ), array( 5, 87, 1, 88 ), array( 11, 12, 7, 13 ), array( 5, 24, 7, 25 ), array( 7, 45, 3, 46 ), array( 5, 98, 1, 99 ), array( 3, 15, 13, 16 ), array( 15, 19, 2, 20 ), array( 10, 46, 1, 47 ), array( 1, 107, 5, 108 ), array( 2, 14, 17, 15 ), array( 1, 22, 15, 23 ), array( 9, 43, 4, 44 ), array( 5, 120, 1, 121 ), array( 2, 14, 19, 15 ), array( 17, 22, 1, 23 ), array( 3, 44, 11, 45 ), array( 3, 113, 4, 114 ), array( 9, 13, 16, 14 ), array( 17, 21, 4, 22 ), array( 3, 41, 13, 42 ), array( 3, 107, 5, 108 ), array( 15, 15, 10, 16 ), array( 15, 24, 5, 25 ), array( 17, 42 ), array( 4, 116, 4, 117 ), array( 19, 16, 6, 17 ), array( 17, 22, 6, 23 ), array( 17, 46 ), array( 2, 111, 7, 112 ), array( 34, 13 ), array( 7, 24, 16, 25 ), array( 4, 47, 14, 48 ), array( 4, 121, 5, 122 ), array( 16, 15, 14, 16 ), array( 11, 24, 14, 25 ), array( 6, 45, 14, 46 ), array( 6, 117, 4, 118 ), array( 30, 16, 2, 17 ), array( 11, 24, 16, 25 ), array( 8, 47, 13, 48 ), array( 8, 106, 4, 107 ), array( 22, 15, 13, 16 ), array( 7, 24, 22, 25 ), array( 19, 46, 4, 47 ), array( 10, 114, 2, 115 ), array( 33, 16, 4, 17 ), array( 28, 22, 6, 23 ), array( 22, 45, 3, 46 ), array( 8, 122, 4, 123 ), array( 12, 15, 28, 16 ), array( 8, 23, 26, 24 ), array( 3, 45, 23, 46 ), array( 3, 117, 10, 118 ), array( 11, 15, 31, 16 ), array( 4, 24, 31, 25 ), array( 21, 45, 7, 46 ), array( 7, 116, 7, 117 ), array( 19, 15, 26, 16 ), array( 1, 23, 37, 24 ), array( 19, 47, 10, 48 ), array( 5, 115, 10, 116 ), array( 23, 15, 25, 16 ), array( 15, 24, 25, 25 ), array( 2, 46, 29, 47 ), array( 13, 115, 3, 116 ), array( 23, 15, 28, 16 ), array( 42, 24, 1, 25 ), array( 10, 46, 23, 47 ), array( 17, 115 ), array( 19, 15, 35, 16 ), array( 10, 24, 35, 25 ), array( 14, 46, 21, 47 ), array( 17, 115, 1, 116 ), array( 11, 15, 46, 16 ), array( 29, 24, 19, 25 ), array( 14, 46, 23, 47 ), array( 13, 115, 6, 116 ), array( 59, 16, 1, 17 ), array( 44, 24, 7, 25 ), array( 12, 47, 26, 48 ), array( 12, 121, 7, 122 ), array( 22, 15, 41, 16 ), array( 39, 24, 14, 25 ), array( 6, 47, 34, 48 ), array( 6, 121, 14, 122 ), array( 2, 15, 64, 16 ), array( 46, 24, 10, 25 ), array( 29, 46, 14, 47 ), array( 17, 122, 4, 123 ), array( 24, 15, 46, 16 ), array( 49, 24, 10, 25 ), array( 13, 46, 32, 47 ), array( 4, 122, 18, 123 ), array( 42, 15, 32, 16 ), array( 48, 24, 14, 25 ), array( 40, 47, 7, 48 ), array( 20, 117, 4, 118 ), array( 10, 15, 67, 16 ), array( 43, 24, 22, 25 ), array( 18, 47, 31, 48 ), array( 19, 118, 6, 119 ), array( 20, 15, 61, 16 ), array( 34, 24, 34, 25 ) );
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $sr = array( 7 => array( 1, 87, 229, 146, 149, 238, 102, 21 ), 10 => array( 1, 251, 67, 46, 61, 118, 70, 64, 94, 32, 45 ), 13 => array( 1, 74, 152, 176, 100, 86, 100, 106, 104, 130, 218, 206, 140, 78 ), 15 => array( 1, 8, 183, 61, 91, 202, 37, 51, 58, 58, 237, 140, 124, 5, 99, 105 ), 16 => array( 1, 120, 104, 107, 109, 102, 161, 76, 3, 91, 191, 147, 169, 182, 194, 225, 120 ), 17 => array( 1, 43, 139, 206, 78, 43, 239, 123, 206, 214, 147, 24, 99, 150, 39, 243, 163, 136 ), 18 => array( 1, 215, 234, 158, 94, 184, 97, 118, 170, 79, 187, 152, 148, 252, 179, 5, 98, 96, 153 ), 20 => array( 1, 17, 60, 79, 50, 61, 163, 26, 187, 202, 180, 221, 225, 83, 239, 156, 164, 212, 212, 188, 190 ), 22 => array( 1, 210, 171, 247, 242, 93, 230, 14, 109, 221, 53, 200, 74, 8, 172, 98, 80, 219, 134, 160, 105, 165, 231 ), 24 => array( 1, 229, 121, 135, 48, 211, 117, 251, 126, 159, 180, 169, 152, 192, 226, 228, 218, 111, 0, 117, 232, 87, 96, 227, 21 ), 26 => array( 1, 173, 125, 158, 2, 103, 182, 118, 17, 145, 201, 111, 28, 165, 53, 161, 21, 245, 142, 13, 102, 48, 227, 153, 145, 218, 70 ), 28 => array( 1, 168, 223, 200, 104, 224, 234, 108, 180, 110, 190, 195, 147, 205, 27, 232, 201, 21, 43, 245, 87, 42, 195, 212, 119, 242, 37, 9, 123 ), 30 => array( 1, 41, 173, 145, 152, 216, 31, 179, 182, 50, 48, 110, 86, 239, 96, 222, 125, 42, 173, 226, 193, 224, 130, 156, 37, 251, 216, 238, 40, 192, 180 ), 32 => array( 1, 10, 6, 106, 190, 249, 167, 4, 67, 209, 138, 138, 32, 242, 123, 89, 27, 120, 185, 80, 156, 38, 69, 171, 60, 28, 222, 80, 52, 254, 185, 220, 241 ), 34 => array( 1, 111, 77, 146, 94, 26, 21, 108, 19, 105, 94, 113, 193, 86, 140, 163, 125, 58, 158, 229, 239, 218, 103, 56, 70, 114, 61, 183, 129, 167, 13, 98, 62, 129, 51 ), 36 => array( 1, 200, 183, 98, 16, 172, 31, 246, 234, 60, 152, 115, 0, 167, 152, 113, 248, 238, 107, 18, 63, 218, 37, 87, 210, 105, 177, 120, 74, 121, 196, 117, 251, 113, 233, 30, 120 ), 40 => array( 1, 59, 116, 79, 161, 252, 98, 128, 205, 128, 161, 247, 57, 163, 56, 235, 106, 53, 26, 187, 174, 226, 104, 170, 7, 175, 35, 181, 114, 88, 41, 47, 163, 125, 134, 72, 20, 232, 53, 35, 15 ), 42 => array( 1, 250, 103, 221, 230, 25, 18, 137, 231, 0, 3, 58, 242, 221, 191, 110, 84, 230, 8, 188, 106, 96, 147, 15, 131, 139, 34, 101, 223, 39, 101, 213, 199, 237, 254, 201, 123, 171, 162, 194, 117, 50, 96 ), 44 => array( 1, 190, 7, 61, 121, 71, 246, 69, 55, 168, 188, 89, 243, 191, 25, 72, 123, 9, 145, 14, 247, 1, 238, 44, 78, 143, 62, 224, 126, 118, 114, 68, 163, 52, 194, 217, 147, 204, 169, 37, 130, 113, 102, 73, 181 ), 46 => array( 1, 112, 94, 88, 112, 253, 224, 202, 115, 187, 99, 89, 5, 54, 113, 129, 44, 58, 16, 135, 216, 169, 211, 36, 1, 4, 96, 60, 241, 73, 104, 234, 8, 249, 245, 119, 174, 52, 25, 157, 224, 43, 202, 223, 19, 82, 15 ), 48 => array( 1, 228, 25, 196, 130, 211, 146, 60, 24, 251, 90, 39, 102, 240, 61, 178, 63, 46, 123, 115, 18, 221, 111, 135, 160, 182, 205, 107, 206, 95, 150, 120, 184, 91, 21, 247, 156, 140, 238, 191, 11, 94, 227, 84, 50, 163, 39, 34, 108 ), 50 => array( 1, 232, 125, 157, 161, 164, 9, 118, 46, 209, 99, 203, 193, 35, 3, 209, 111, 195, 242, 203, 225, 46, 13, 32, 160, 126, 209, 130, 160, 242, 215, 242, 75, 77, 42, 189, 32, 113, 65, 124, 69, 228, 114, 235, 175, 124, 170, 215, 232, 133, 205 ), 52 => array( 1, 116, 50, 86, 186, 50, 220, 251, 89, 192, 46, 86, 127, 124, 19, 184, 233, 151, 215, 22, 14, 59, 145, 37, 242, 203, 134, 254, 89, 190, 94, 59, 65, 124, 113, 100, 233, 235, 121, 22, 76, 86, 97, 39, 242, 200, 220, 101, 33, 239, 254, 116, 51 ), 54 => array( 1, 183, 26, 201, 87, 210, 221, 113, 21, 46, 65, 45, 50, 238, 184, 249, 225, 102, 58, 209, 218, 109, 165, 26, 95, 184, 192, 52, 245, 35, 254, 238, 175, 172, 79, 123, 25, 122, 43, 120, 108, 215, 80, 128, 201, 235, 8, 153, 59, 101, 31, 198, 76, 31, 156 ), 56 => array( 1, 106, 120, 107, 157, 164, 216, 112, 116, 2, 91, 248, 163, 36, 201, 202, 229, 6, 144, 254, 155, 135, 208, 170, 209, 12, 139, 127, 142, 182, 249, 177, 174, 190, 28, 10, 85, 239, 184, 101, 124, 152, 206, 96, 23, 163, 61, 27, 196, 247, 151, 154, 202, 207, 20, 61, 10 ), 58 => array( 1, 82, 116, 26, 247, 66, 27, 62, 107, 252, 182, 200, 185, 235, 55, 251, 242, 210, 144, 154, 237, 176, 141, 192, 248, 152, 249, 206, 85, 253, 142, 65, 165, 125, 23, 24, 30, 122, 240, 214, 6, 129, 218, 29, 145, 127, 134, 206, 245, 117, 29, 41, 63, 159, 142, 233, 125, 148, 123 ), 60 => array( 1, 107, 140, 26, 12, 9, 141, 243, 197, 226, 197, 219, 45, 211, 101, 219, 120, 28, 181, 127, 6, 100, 247, 2, 205, 198, 57, 115, 219, 101, 109, 160, 82, 37, 38, 238, 49, 160, 209, 121, 86, 11, 124, 30, 181, 84, 25, 194, 87, 65, 102, 190, 220, 70, 27, 209, 16, 89, 7, 33, 240 ), 62 => array( 1, 65, 202, 113, 98, 71, 223, 248, 118, 214, 94, 0, 122, 37, 23, 2, 228, 58, 121, 7, 105, 135, 78, 243, 118, 70, 76, 223, 89, 72, 50, 70, 111, 194, 17, 212, 126, 181, 35, 221, 117, 235, 11, 229, 149, 147, 123, 213, 40, 115, 6, 200, 100, 26, 246, 182, 218, 127, 215, 36, 186, 110, 106 ), 64 => array( 1, 45, 51, 175, 9, 7, 158, 159, 49, 68, 119, 92, 123, 177, 204, 187, 254, 200, 78, 141, 149, 119, 26, 127, 53, 160, 93, 199, 212, 29, 24, 145, 156, 208, 150, 218, 209, 4, 216, 91, 47, 184, 146, 47, 140, 195, 195, 125, 242, 238, 63, 99, 108, 140, 230, 242, 31, 204, 11, 178, 243, 217, 156, 213, 231 ), 66 => array( 1, 5, 118, 222, 180, 136, 136, 162, 51, 46, 117, 13, 215, 81, 17, 139, 247, 197, 171, 95, 173, 65, 137, 178, 68, 111, 95, 101, 41, 72, 214, 169, 197, 95, 7, 44, 154, 77, 111, 236, 40, 121, 143, 63, 87, 80, 253, 240, 126, 217, 77, 34, 232, 106, 50, 168, 82, 76, 146, 67, 106, 171, 25, 132, 93, 45, 105 ), 68 => array( 1, 247, 159, 223, 33, 224, 93, 77, 70, 90, 160, 32, 254, 43, 150, 84, 101, 190, 205, 133, 52, 60, 202, 165, 220, 203, 151, 93, 84, 15, 84, 253, 173, 160, 89, 227, 52, 199, 97, 95, 231, 52, 177, 41, 125, 137, 241, 166, 225, 118, 2, 54, 32, 82, 215, 175, 198, 43, 238, 235, 27, 101, 184, 127, 3, 5, 8, 163, 238 ) );
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $char = array( array( 1 => 10, 2 => 9, 4 => 8, 8 => 8 ), array( 1 => 12, 2 => 11, 4 => 16, 8 => 10 ), array( 1 => 14, 2 => 13, 4 => 16, 8 => 12 ) );
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $alpha = array( '0' => 0, '1' => 1, '2' => 2, '3' => 3, '4' => 4, '5' => 5, '6' => 6, '7' => 7, '8' => 8, '9' => 9, 'A' => 10, 'B' => 11, 'C' => 12, 'D' => 13, 'E' => 14, 'F' => 15, 'G' => 16, 'H' => 17, 'I' => 18, 'J' => 19, 'K' => 20, 'L' => 21, 'M' => 22, 'N' => 23, 'O' => 24, 'P' => 25, 'Q' => 26, 'R' => 27, 'S' => 28, 'T' => 29, 'U' => 30, 'V' => 31, 'W' => 32, 'X' => 33, 'Y' => 34, 'Z' => 35, ' ' => 36, '$' => 37, '%' => 38, '*' => 39, '+' => 40, '-' => 41, '.' => 42, '/' => 43, ' : ' => 44 );
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $n2a = array( null, 0, 1, 25, 2, 50, 26, 198, 3, 223, 51, 238, 27, 104, 199, 75, 4, 100, 224, 14, 52, 141, 239, 129, 28, 193, 105, 248, 200, 8, 76, 113, 5, 138, 101, 47, 225, 36, 15, 33, 53, 147, 142, 218, 240, 18, 130, 69, 29, 181, 194, 125, 106, 39, 249, 185, 201, 154, 9, 120, 77, 228, 114, 166, 6, 191, 139, 98, 102, 221, 48, 253, 226, 152, 37, 179, 16, 145, 34, 136, 54, 208, 148, 206, 143, 150, 219, 189, 241, 210, 19, 92, 131, 56, 70, 64, 30, 66, 182, 163, 195, 72, 126, 110, 107, 58, 40, 84, 250, 133, 186, 61, 202, 94, 155, 159, 10, 21, 121, 43, 78, 212, 229, 172, 115, 243, 167, 87, 7, 112, 192, 247, 140, 128, 99, 13, 103, 74, 222, 237, 49, 197, 254, 24, 227, 165, 153, 119, 38, 184, 180, 124, 17, 68, 146, 217, 35, 32, 137, 46, 55, 63, 209, 91, 149, 188, 207, 205, 144, 135, 151, 178, 220, 252, 190, 97, 242, 86, 211, 171, 20, 42, 93, 158, 132, 60, 57, 83, 71, 109, 65, 162, 31, 45, 67, 216, 183, 123, 164, 118, 196, 23, 73, 236, 127, 12, 111, 246, 108, 161, 59, 82, 41, 157, 85, 170, 251, 96, 134, 177, 187, 204, 62, 90, 203, 89, 95, 176, 156, 169, 160, 81, 11, 245, 22, 235, 122, 117, 44, 215, 79, 174, 213, 233, 230, 231, 173, 232, 116, 214, 244, 234, 168, 80, 88, 175 );
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @var    array
+     * @var <array>
      */
     private static $a2n = array( 1, 2, 4, 8, 16, 32, 64, 128, 29, 58, 116, 232, 205, 135, 19, 38, 76, 152, 45, 90, 180, 117, 234, 201, 143, 3, 6, 12, 24, 48, 96, 192, 157, 39, 78, 156, 37, 74, 148, 53, 106, 212, 181, 119, 238, 193, 159, 35, 70, 140, 5, 10, 20, 40, 80, 160, 93, 186, 105, 210, 185, 111, 222, 161, 95, 190, 97, 194, 153, 47, 94, 188, 101, 202, 137, 15, 30, 60, 120, 240, 253, 231, 211, 187, 107, 214, 177, 127, 254, 225, 223, 163, 91, 182, 113, 226, 217, 175, 67, 134, 17, 34, 68, 136, 13, 26, 52, 104, 208, 189, 103, 206, 129, 31, 62, 124, 248, 237, 199, 147, 59, 118, 236, 197, 151, 51, 102, 204, 133, 23, 46, 92, 184, 109, 218, 169, 79, 158, 33, 66, 132, 21, 42, 84, 168, 77, 154, 41, 82, 164, 85, 170, 73, 146, 57, 114, 228, 213, 183, 115, 230, 209, 191, 99, 198, 145, 63, 126, 252, 229, 215, 179, 123, 246, 241, 255, 227, 219, 171, 75, 150, 49, 98, 196, 149, 55, 110, 220, 165, 87, 174, 65, 130, 25, 50, 100, 200, 141, 7, 14, 28, 56, 112, 224, 221, 167, 83, 166, 81, 162, 89, 178, 121, 242, 249, 239, 195, 155, 43, 86, 172, 69, 138, 9, 18, 36, 72, 144, 61, 122, 244, 245, 247, 243, 251, 235, 203, 139, 11, 22, 44, 88, 176, 125, 250, 233, 207, 131, 27, 54, 108, 216, 173, 71, 142, 1 );
 
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access public
      *
-     * @param  string  $data Contains the QR code content.
-     * @param  integer $ecc  Contains the error correction level.
+     * @param <string> $data Contains the QR code content.
+     * @param <integer> $ecc Contains the error correction level.
      */
     public function __construct( $data, $ecc = self::ECC_M )
     {
@@ -4101,7 +4064,7 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access public
      */
     public function get_digit()
@@ -4112,11 +4075,11 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
      *
-     * @param  integer/string/array $DEFAULT DEFAULT
-     * @param  integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      */
     private function prepare( $data, $ecc )
     {
@@ -4289,7 +4252,7 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
      */
     private function frame()
@@ -4402,7 +4365,7 @@ class Matrix_Barcode_QuickResponseCode
      *
      * 0, 1 = frame, 2, 3 = data, 4 = empty
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
      */
     private function reed_solomon_code()
@@ -4516,7 +4479,7 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * When encoding a QR code, there are eight mask patterns that you can use to change the outputted matrix. Each mask pattern changes the bits according to their coordinates in the QR matrix. The purpose of a mask pattern is to make the QR code easier for a QR scanner to read.
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
      */
     private function mask()
@@ -4713,7 +4676,7 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * The QR code's size is represented by a number, called a version number. To ensure that a QR code scanner accurately decodes what it scans, the QR code specification requires that each code include a format information string, which tells the QR code scanner which error correction level and mask pattern the QR code is using. In addition, for version 7 and larger, the QR code specification requires that each code include a version information string, which tells the QR code scanner which version the code is.
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
      */
     private function format()
@@ -4757,13 +4720,13 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
      *
-     * @param  string  $data  DEFAULT
-     * @param  string  $phase DEFAULT
-     * @param  integer $x     DEFAULT
-     * @param  integer $y     DEFAULT
+     * @param <string> $data DEFAULT
+     * @param <string> $phase DEFAULT
+     * @param <integer> $x DEFAULT
+     * @param <integer> $y DEFAULT
      */
     private function place( $data, $phase, $x, $y )
     {
@@ -4783,15 +4746,14 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @param  integer/string/array $DEFAULT DEFAULT
-     * @param  integer/string/array $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
+     * @param <integer/string/array> $DEFAULT DEFAULT
      *
-     * @return integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function crc( $m, $k )
     {
@@ -4817,15 +4779,14 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @param  array   $d DEFAULT
-     * @param  integer $b DEFAULT
+     * @param <array> $d DEFAULT
+     * @param <integer> $b DEFAULT
      *
-     * @return integer/string/array $DEFAULT DEFAULT
+     * @return <integer/string/array> $DEFAULT DEFAULT
      */
     private static function crc2( $d, $b )
     {
@@ -4859,15 +4820,14 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @param  integer $d DEFAULT
-     * @param  integer $l DEFAULT
+     * @param <integer> $d DEFAULT
+     * @param <integer> $l DEFAULT
      *
-     * @return string DEFAULT
+     * @return <string> DEFAULT
      */
     private static function bits( $d, $l )
     {
@@ -4877,16 +4837,15 @@ class Matrix_Barcode_QuickResponseCode
     /**
      * DEFAULT
      *
-     * @since  2.0.17
+     * @since 2.0.17
      * @access private
-     *
      * @static
      *
-     * @param  array   $a   DEFAULT
-     * @param  integer $b   DEFAULT
-     * @param  boolean $arr DEFAULT
+     * @param <array> $a DEFAULT
+     * @param <integer> $b DEFAULT
+     * @param <boolean> $arr DEFAULT
      *
-     * @return string|array  DEFAULT
+     * @return <string|array> DEFAULT
      */
     private static function transpose( $a, $b, $arr = false )
     {
