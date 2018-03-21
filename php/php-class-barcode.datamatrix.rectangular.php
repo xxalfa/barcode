@@ -120,10 +120,14 @@
     //-------------------------------------------------
 ?>
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" prefix="og: http://ogp.me/ns#" moznomarginboxes mozdisallowselectionprint>
 <title>BarCode Coder Library -> Barcode Test Area</title>
+
 <meta charset="utf-8">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
 <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+
 <link href="./favicon.ico" rel="shortcut icon">
 <style type="text/css" media="all">
 
